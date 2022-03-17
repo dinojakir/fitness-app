@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,8 +13,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule,
-    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
