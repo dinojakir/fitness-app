@@ -11,38 +11,20 @@ import {
 export class DbService {
   constructor(private db: AngularFirestore) {}
 
-  async deleteCollectionDocument(
-    collection: string,
-    document: any
-  ): Promise<void> {
-    const collectionRef: AngularFirestoreCollection =
-      this.db.collection(collection);
-    const documentRef: AngularFirestoreDocument = collectionRef?.doc(
-      document.id
-    );
+  async addDocument(collection: string, document: any) {
+    const c = this.getCollection(collection);
 
-    await documentRef?.delete();
+    c?.add(document);
   }
 
-  async getCollection(
-    collection: string
-  ): Promise<firebase.default.firestore.QuerySnapshot<unknown>> {
-    const snaps: firebase.default.firestore.QuerySnapshot<unknown> =
-      await this.db.collection(collection).get().toPromise();
+  async deleteDocument(collection: string, document: any): Promise<void> {
+    const c: AngularFirestoreCollection = this.db.collection(collection);
+    const d: AngularFirestoreDocument = c?.doc(document.id);
 
-    return snaps;
+    d?.delete();
   }
 
-  async saveCollectionDocument(
-    collection: string,
-    document: any
-  ): Promise<void> {
-    const collectionRef: AngularFirestoreCollection =
-      this.db.collection(collection);
-    const documentRef: AngularFirestoreDocument = collectionRef?.doc(
-      document.id
-    );
-    const dto: any = JSON.parse(JSON.stringify(document));
-    await documentRef?.set(dto);
+  getCollection(collection: string) {
+    return this.db.collection(collection);
   }
 }
