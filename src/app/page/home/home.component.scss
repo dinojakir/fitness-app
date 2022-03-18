@@ -1,14 +1,18 @@
 .container {
+  position: relative;
+}
+
+.media {
   height: 650px;
 }
 
-.container video {
+.media video {
   height: 100%;
   object-fit: cover;
   width: 100%;
 }
 
-.container::before {
+.media::before {
   content: "";
   position: absolute;
   top: 0;
